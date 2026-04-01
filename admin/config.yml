@@ -1,0 +1,107 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Lokaler Modus zum Testen (ohne Git)
+# Zum Testen: npx decap-server
+# local_backend: true
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: "de"
+
+# Logo im Admin-Panel
+site_url: https://tierarztantolini.at
+logo_url: https://tierarztantolini.at/wp-content/uploads/2024/09/logoforwebtransparentbackground.png
+
+collections:
+  # ═══ GALERIE ═══
+  - name: "galerie"
+    label: "Galerie"
+    label_singular: "Galerie-Bild"
+    description: "Fotos der Ordination, Villa, Team und Patienten"
+    folder: "content/galerie"
+    create: true
+    slug: "{{slug}}"
+    media_folder: "/images/galerie"
+    public_folder: "/images/galerie"
+    sortable_fields: ["order", "title"]
+    fields:
+      - { label: "Titel", name: "title", widget: "string", hint: "z.B. 'Unser Behandlungsraum'" }
+      - { label: "Bild", name: "image", widget: "image", hint: "Optimale Größe: 800x800px oder 1200x600px für breite Bilder" }
+      - { label: "Bildbeschreibung (Alt-Text)", name: "alt", widget: "string", hint: "Beschreibung für Barrierefreiheit und SEO" }
+      - { label: "Kategorie", name: "category", widget: "select", options: ["villa", "behandlung", "team", "patienten", "garten"], default: "villa" }
+      - { label: "Breites Bild?", name: "wide", widget: "boolean", default: false, hint: "Nimmt 2 Spalten ein statt 1" }
+      - { label: "Reihenfolge", name: "order", widget: "number", default: 50, hint: "Niedrigere Zahl = weiter vorne" }
+
+  # ═══ BEWERTUNGEN ═══
+  - name: "bewertungen"
+    label: "Bewertungen"
+    label_singular: "Bewertung"
+    description: "Kundenbewertungen für die Website"
+    folder: "content/bewertungen"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Kundenname", name: "name", widget: "string", hint: "z.B. 'Mag. Elisabeth K.'" }
+      - { label: "Bewertungstext", name: "text", widget: "text", hint: "Das Zitat des Kunden" }
+      - { label: "Tier/Beschreibung", name: "pet", widget: "string", hint: "z.B. 'Katzenbesitzerin aus Hietzing'" }
+      - { label: "Tier-Emoji", name: "emoji", widget: "string", default: "🐾", hint: "z.B. 🐱 🐕 🐰 🐹" }
+      - { label: "Sterne", name: "stars", widget: "number", min: 1, max: 5, default: 5 }
+      - { label: "Anzeigen", name: "visible", widget: "boolean", default: true }
+
+  # ═══ LEISTUNGEN ═══
+  - name: "leistungen"
+    label: "Leistungen"
+    label_singular: "Leistung"
+    description: "Angebotene Leistungen der Ordination"
+    folder: "content/leistungen"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Beschreibung", name: "description", widget: "text" }
+      - { label: "Icon-Bild", name: "icon", widget: "image", required: false }
+      - { label: "Reihenfolge", name: "order", widget: "number", default: 50 }
+
+  # ═══ INSTAGRAM POSTS (manuell) ═══
+  - name: "instagram"
+    label: "Instagram Posts"
+    label_singular: "Instagram Post"
+    description: "Instagram-Vorschaubilder für die Website (werden auch als Post-Vorlage verwendet)"
+    folder: "content/instagram"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Thema", name: "title", widget: "string", hint: "z.B. 'Zecken-Tipps Frühling'" }
+      - { label: "Bild", name: "image", widget: "image", hint: "Quadratisch, 1080x1080px ideal" }
+      - { label: "Instagram-Caption", name: "caption", widget: "text", hint: "Der Text der unter dem Instagram-Post steht" }
+      - { label: "Hashtags", name: "hashtags", widget: "string", default: "#TierarztWien #TierarztHietzing #DDrAntolini #TierliebhaberWien" }
+      - { label: "Geplantes Datum", name: "date", widget: "datetime" }
+      - { label: "Likes (Anzeige)", name: "likes", widget: "number", default: 0, hint: "Wird auf der Website angezeigt, kann nach Veröffentlichung aktualisiert werden" }
+      - { label: "Instagram-URL", name: "url", widget: "string", required: false, hint: "Link zum veröffentlichten Post" }
+      - { label: "Status", name: "status", widget: "select", options: ["entwurf", "geplant", "veröffentlicht"], default: "entwurf" }
+
+  # ═══ SEITENEINSTELLUNGEN ═══
+  - name: "einstellungen"
+    label: "Einstellungen"
+    description: "Allgemeine Website-Einstellungen"
+    files:
+      - name: "allgemein"
+        label: "Allgemeine Einstellungen"
+        file: "content/settings/general.json"
+        fields:
+          - { label: "Praxis-Name", name: "practice_name", widget: "string", default: "Tierärztliche Ordination DDr. Antolini" }
+          - { label: "Telefon", name: "phone", widget: "string", default: "+43 664 340 35 62" }
+          - { label: "E-Mail", name: "email", widget: "string", default: "michael@antolini.at" }
+          - { label: "Adresse", name: "address", widget: "string", default: "Seelosgasse 20, 1130 Wien" }
+          - { label: "Instagram Handle", name: "instagram", widget: "string", default: "@tierarztvienna" }
+          - { label: "Facebook URL", name: "facebook", widget: "string", default: "https://facebook.com/tierarztantolini" }
+          - { label: "WhatsApp Nachricht", name: "whatsapp_message", widget: "string", default: "Hallo, ich möchte gerne einen Termin vereinbaren." }
+          - label: "Philosophie-Zitat"
+            name: "quote"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "text", default: "In der Ruhe einer Wiener Villa heilen wir mit den Händen der Medizin und dem Herzen einer italienischen Familie." }
+              - { label: "Autor", name: "author", widget: "string", default: "DDr. Michael Antolini" }
