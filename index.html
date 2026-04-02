@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://tierarztantolini.at/wp-content/uploads/2024/10/fav-ai-edited-headerpic-2-1024x730.png">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="730">
-<meta property="og:url" content="https://tierarztwien.at">
+<meta property="og:url" content="https://tierarztantolini.at">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_AT">
 <meta property="og:site_name" content="Tierarzt Antolini Wien">
@@ -30,7 +30,7 @@
 <meta name="twitter:description" content="Einfühlsame Tiermedizin in exklusiver Villa-Atmosphäre. 30+ Jahre Erfahrung.">
 <meta name="twitter:image" content="https://tierarztantolini.at/wp-content/uploads/2024/10/fav-ai-edited-headerpic-2-1024x730.png">
 
-<link rel="canonical" href="https://tierarztwien.at">
+<link rel="canonical" href="https://tierarztantolini.at">
 <!-- Fonts lokal gehostet (DSGVO-konform, keine Verbindung zu Google) -->
 <style>
 @font-face { font-family:'Cormorant Garamond'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/cormorant-garamond-400.ttf') format('truetype'); }
@@ -63,7 +63,7 @@
     "logo": "https://tierarztantolini.at/wp-content/uploads/2024/09/logoforwebtransparentbackground.png",
     "telephone": "+436643403562",
     "email": "michael@antolini.at",
-    "url": "https://tierarztwien.at",
+    "url": "https://tierarztantolini.at",
     "sameAs": [
       "https://www.instagram.com/tierarztvienna/",
       "https://www.facebook.com/tierarztantolini"
@@ -165,7 +165,7 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://tierarztwien.at" }
+      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://tierarztantolini.at" }
     ]
   }
 ]
@@ -1546,5 +1546,13 @@ if (!localStorage.getItem('consent_set')) {
 }
 </script>
 
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function(user) {
+      if (!user) { window.netlifyIdentity.on("login", function() { document.location.href = "/admin/"; }); }
+    });
+  }
+</script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </body>
 </html>
