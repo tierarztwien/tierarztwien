@@ -1,6 +1,6 @@
 # Projekt-Status: DDr. Antolini Website
 
-**Stand:** 1. April 2026
+**Stand:** 2. April 2026
 
 ---
 
