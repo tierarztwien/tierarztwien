@@ -13,7 +13,7 @@ locale: "de"
 
 # Logo im Admin-Panel
 site_url: https://tierarztantolini.at
-logo_url: https://tierarztantolini.at/wp-content/uploads/2024/09/logoforwebtransparentbackground.png
+logo_url: https://tierarztantolini.at/images/logo.png
 
 collections:
   # ═══ GALERIE ═══
