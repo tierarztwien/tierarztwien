@@ -1177,6 +1177,10 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
     </div>
   </article>
 
+  Hochformat im 4:3-Teaser sitzt oft schlecht. Dann am <img> ein
+  style="object-position: center 68%" setzen -- 0 % ist der obere Rand des Fotos,
+  100 % der untere. Das grosse Bild in der Lightbox bleibt davon unberuehrt.
+
   Ohne Bilder: den Block <div class="news-gallery"> einfach weglassen.
   Beliebig viele Bilder sind möglich, das Raster bricht selbst um.
 -->
@@ -1188,41 +1192,49 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
   </div>
   <div class="news-list">
 
-    <!-- ↓↓↓ PLATZHALTER &mdash; vor dem Live-Gang durch einen echten Eintrag ersetzen ↓↓↓ -->
     <article class="news-entry reveal" data-lightbox>
       <div class="news-meta">
         <time class="news-date" datetime="2026-10-05">5. Oktober 2026</time>
-        <span class="news-badge">Platzhalter</span>
+        <span class="news-badge">Unterwegs</span>
       </div>
-      <h3>Beispieleintrag &mdash; hier steht Ihr nächster Termin</h3>
-      <p class="news-text">Dieser Eintrag ist ein Platzhalter und zeigt, wie ein Beitrag
-        aussieht: ein Datum, ein Titel, zwei oder drei Sätze Text und darunter beliebig
-        viele Fotos, die sich mit einem Klick groß öffnen. Er wird durch den ersten
-        echten Beitrag ersetzt.</p>
+      <h3>Tierhilfe auf Santorin</h3>
+      <p class="news-text">Auf den griechischen Inseln gehören Katzen und Hunde ohne Zuhause
+        zum Straßenbild &mdash; rund um Futterstellen, Mauern und Container. DDr. Antolini ist
+        derzeit auf Santorin und kümmert sich dort gemeinsam mit Helferinnen und Helfern vor Ort
+        um streunende Tiere. Ein paar Eindrücke davon haben uns in diesen Tagen erreicht.</p>
       <div class="news-gallery">
         <button type="button" class="news-img" data-lightbox-item
-                onclick="openLightbox(this)" data-caption="Behandlungsraum in der Villa">
-          <img src="images/ordination-behandlungsraum-villa-hietzing.jpg"
-               alt="Behandlungsraum mit Kristallluster in der Villa-Ordination Wien-Hietzing" loading="lazy">
+                onclick="openLightbox(this)" data-caption="Futterstelle in der Gasse">
+          <img src="images/aktuelles/2026-10-griechenland-futter-in-der-gasse.jpg"
+               alt="Futterstelle in einer Gasse: Straßenkatzen und ein Hund werden versorgt" loading="lazy">
         </button>
         <button type="button" class="news-img" data-lightbox-item
-                onclick="openLightbox(this)" data-caption="Unser Garten in Hietzing">
-          <img src="images/pudel-garten-hietzing-wien.jpg"
-               alt="Weißer Pudel im Garten der Tierarztordination Wien-Hietzing" loading="lazy">
+                onclick="openLightbox(this)" data-caption="Versorgung am Straßenrand">
+          <img src="images/aktuelles/2026-10-griechenland-hund-versorgung.jpg"
+               alt="Ein herrenloser Hund wird am Straßenrand versorgt" loading="lazy">
         </button>
         <button type="button" class="news-img" data-lightbox-item
-                onclick="openLightbox(this)" data-caption="Ultraschall-Diagnostik">
-          <img src="images/tierarzt-ultraschall-diagnostik-hund.jpg"
-               alt="Ultraschalluntersuchung bei einem Hund in der Ordination DDr. Antolini" loading="lazy">
+                onclick="openLightbox(this)" data-caption="Einer der Patienten">
+          <img src="images/aktuelles/2026-10-griechenland-strassenkatze-portrait.jpg"
+               alt="Schwarz-weiße Straßenkatze blickt in die Kamera" loading="lazy">
         </button>
         <button type="button" class="news-img" data-lightbox-item
-                onclick="openLightbox(this)" data-caption="Persönliche Betreuung mit Herz">
-          <img src="images/tierarzt-antolini-patient-portrait.jpg"
-               alt="DDr. Michael Antolini mit einem Patienten in Wien-Hietzing" loading="lazy">
+                onclick="openLightbox(this)" data-caption="An den Containern">
+          <img src="images/aktuelles/2026-10-griechenland-katzen-futterstelle.jpg"
+               alt="Straßenkatzen an einer Futterstelle neben den Müllcontainern" loading="lazy">
+        </button>
+        <button type="button" class="news-img" data-lightbox-item
+                onclick="openLightbox(this)" data-caption="Mittagsruhe auf der Mauer">
+          <img src="images/aktuelles/2026-10-griechenland-katzen-mauer.jpg" style="object-position: center 68%"
+               alt="Katzen ruhen auf einer Mauer über der Futterstelle" loading="lazy">
+        </button>
+        <button type="button" class="news-img" data-lightbox-item
+                onclick="openLightbox(this)" data-caption="Die Ordination vor Ort">
+          <img src="images/aktuelles/2026-10-griechenland-ordination-vor-ort.jpg" style="object-position: center 35%"
+               alt="Behandlungsraum einer kleinen tierärztlichen Ordination auf der Insel" loading="lazy">
         </button>
       </div>
     </article>
-    <!-- ↑↑↑ PLATZHALTER ENDE ↑↑↑ -->
 
   </div>
 </section>
