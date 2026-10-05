@@ -53,7 +53,27 @@ git push origin main
 - Images with SEO-optimized filenames in `/images/` (e.g., `tierarzt-antolini-mit-hund-wien.jpg`)
 - Original photos in `/Fotos/` (source files, not deployed directly)
 - CMS content in `/content/` (galerie, bewertungen, leistungen, instagram, settings)
-- CMS is set up but NOT connected to index.html — content changes require manual HTML edits for now
+- ⚠ **CMS is set up but NOT connected to index.html** — nothing in the page reads `content/`.
+  Whatever the customer enters under `/admin/` lands in the repo and never appears on the site.
+  Measured 05.10.2026: no `fetch(` in index.html, no commit from the CMS since 02.04.2026.
+  `docs/setup-anleitung.md` still promises otherwise — do not hand that section to the customer.
+
+## Aktuelles pflegen (Sektion `#aktuelles`)
+
+Von Hand, bewusst (Entscheid Rene Krische 05.10.2026): Better Safe traegt die Eintraege ein.
+
+1. Fotos auf max. 1600 px verkleinern, nach `images/aktuelles/` legen,
+   Dateiname sprechend und mit Datum: `2026-11-tag-der-offenen-tuer-01.jpg`
+2. In `index.html` den `<article class="news-entry">`-Block kopieren und **oben** einfuegen
+   (neuester Eintrag zuerst). Die Vorlage steht als Kommentar direkt ueber der Sektion.
+3. Jedes Bild braucht `alt` (Barrierefreiheit, Google) und `data-caption` (Text in der Lightbox).
+4. `git commit` + `git push origin main` — nach ~30 Sekunden live.
+
+⚠ **Kein Zahlenindex mehr.** Die Lightbox liest `data-lightbox` (Gruppe) und
+`data-lightbox-item` (Bild) aus dem DOM. Bis 05.10.2026 stand im HTML `openLightbox(7)`
+gegen ein Feld `galleryImages` im Skript — 10 Bilder gegen 6 Eintraege, Klick auf die
+letzten vier warf einen TypeError und die Lightbox blieb zu. Neue Bilder brauchen daher
+nur die beiden Attribute und `onclick="openLightbox(this)"`, nichts mitzuzaehlen.
 
 ## Language
 

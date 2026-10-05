@@ -66,6 +66,11 @@ Die Website ist jetzt unter `random-name.netlify.app` erreichbar.
 
 ## CMS-Bedienung für Dr. Antolini
 
+> ⚠ **Stand 05.10.2026: dieser Abschnitt gilt noch nicht.** Das CMS schreibt zwar nach
+> `content/`, aber `index.html` liest diesen Ordner nicht. Ein hier eingetragenes Bild
+> erscheint **nicht** auf der Website. Entweder wird die Verdrahtung nachgebaut oder
+> dieser Abschnitt gehört entfernt — bis dahin nicht an den Kunden geben.
+
 ### Galerie-Bild hinzufügen
 1. Einloggen auf `tierarztantolini.at/admin/`
 2. "Galerie" → "Neues Galerie-Bild"

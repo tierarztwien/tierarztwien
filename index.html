@@ -90,12 +90,10 @@
       { "@type": "AdministrativeArea", "name": "Penzing" },
       { "@type": "AdministrativeArea", "name": "Meidling" }
     ],
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-      "opens": "09:00",
-      "closes": "18:00",
-      "description": "Nur nach Terminvereinbarung"
+    "availableService": {
+      "@type": "Service",
+      "name": "Tierärztliche Behandlung",
+      "serviceType": "Nur nach Terminvereinbarung"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -106,13 +104,6 @@
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Röntgen, Ultraschall & Endoskopie", "description": "Modernste Diagnostik und Bildgebung" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Zahnpflege & Prophylaxe", "description": "Professionelle Zahnreinigung und Zahnmedizin" } }
       ]
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": "47"
     }
   },
   {
@@ -710,6 +701,49 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
 .gallery-item:hover .gallery-caption { opacity: 1; transform: translateY(0); }
 .gallery-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
 
+/* ═══════════════════════════════════════════
+   AKTUELLES / EVENTS
+   ═══════════════════════════════════════════ */
+.aktuelles { background: var(--cream); }
+.news-list { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px; }
+.news-entry {
+  background: var(--warm-white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 32px 36px; box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.news-entry:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.news-meta { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+.news-date {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); font-weight: 600;
+}
+.news-badge {
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+  color: #fff; background: var(--gold); padding: 4px 11px; border-radius: 20px;
+}
+.news-entry h3 {
+  font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 600;
+  color: var(--brown); line-height: 1.3; margin-bottom: 12px;
+}
+.news-text { font-size: 14.5px; color: var(--text-muted); line-height: 1.85; max-width: 68ch; }
+.news-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 24px; }
+.news-img {
+  padding: 0; border: 0; font: inherit; display: block; width: 100%;
+  background: var(--cream-dark); border-radius: 10px; overflow: hidden;
+  position: relative; aspect-ratio: 4/3; cursor: pointer;
+}
+.news-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+.news-img:hover img { transform: scale(1.07); }
+.news-img:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.news-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(45,41,38,0.45) 0%, transparent 55%);
+  opacity: 0; transition: opacity var(--transition); pointer-events: none;
+}
+.news-img:hover::after { opacity: 1; }
+/* Eigene Regel, weil .lightbox-nav display:flex setzt und [hidden] sonst wirkungslos bleibt */
+.lightbox-nav[hidden] { display: none; }
+
 /* Lightbox */
 .lightbox {
   position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.92);
@@ -812,6 +846,7 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
   .contact-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  .news-gallery { grid-template-columns: repeat(3, 1fr); }
   .instagram-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 768px) {
@@ -836,6 +871,9 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
   .villa-img:first-child { grid-row: auto; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-item.wide { grid-column: span 2; }
+  .news-gallery { grid-template-columns: repeat(2, 1fr); }
+  .news-entry { padding: 24px 20px; }
+  .news-entry h3 { font-size: 23px; }
   .instagram-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-map { min-height: 260px; }
   .contact-map iframe { min-height: 260px; }
@@ -864,6 +902,7 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
     <a href="#team" role="menuitem">Team</a>
     <a href="#villa" role="menuitem">Unsere Villa</a>
     <a href="#bewertungen" role="menuitem">Bewertungen</a>
+    <a href="#aktuelles" role="menuitem">Aktuelles</a>
     <a href="#galerie" role="menuitem">Galerie</a>
     <a href="#instagram" role="menuitem">Instagram</a>
     <a href="#kontakt" role="menuitem">Kontakt</a>
@@ -1111,6 +1150,80 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
   </div>
 </section>
 
+<!-- ═══ AKTUELLES / EVENTS ═══ -->
+<!--
+  PFLEGE-ANLEITUNG (von Hand, siehe CLAUDE.md Abschnitt "Aktuelles pflegen"):
+
+  Ein neuer Eintrag ist eine Kopie des <article>-Blocks, oben eingefuegt
+  (neuester zuerst). Bilder nach images/aktuelles/ legen, Dateinamen
+  sprechend und klein geschrieben: 2026-11-tag-der-offenen-tuer-01.jpg
+
+  <article class="news-entry reveal" data-lightbox>
+    <div class="news-meta">
+      <time class="news-date" datetime="JJJJ-MM-TT">TT. Monat JJJJ</time>
+      <span class="news-badge">Event</span>        <-- oder weglassen
+    </div>
+    <h3>Titel des Eintrags</h3>
+    <p class="news-text">Zwei, drei Sätze.</p>
+    <div class="news-gallery">
+      <button type="button" class="news-img" data-lightbox-item
+              onclick="openLightbox(this)" data-caption="Bildunterschrift">
+        <img src="images/aktuelles/datei.jpg" alt="Beschreibung für Blinde und Google" loading="lazy">
+      </button>
+      ... weitere Bilder, beliebig viele ...
+    </div>
+  </article>
+
+  Ohne Bilder: den Block <div class="news-gallery"> einfach weglassen.
+  Beliebig viele Bilder sind möglich, das Raster bricht selbst um.
+-->
+<section class="section aktuelles" id="aktuelles" aria-labelledby="aktuelles-heading">
+  <div class="section-header reveal">
+    <div class="section-label">Aktuelles</div>
+    <h2 id="aktuelles-heading">Neues aus unserer<br>Villa-Ordination</h2>
+    <p>Termine, Aktionen und Einblicke &mdash; was bei uns gerade ansteht.</p>
+  </div>
+  <div class="news-list">
+
+    <!-- ↓↓↓ PLATZHALTER &mdash; vor dem Live-Gang durch einen echten Eintrag ersetzen ↓↓↓ -->
+    <article class="news-entry reveal" data-lightbox>
+      <div class="news-meta">
+        <time class="news-date" datetime="2026-10-05">5. Oktober 2026</time>
+        <span class="news-badge">Platzhalter</span>
+      </div>
+      <h3>Beispieleintrag &mdash; hier steht Ihr nächster Termin</h3>
+      <p class="news-text">Dieser Eintrag ist ein Platzhalter und zeigt, wie ein Beitrag
+        aussieht: ein Datum, ein Titel, zwei oder drei Sätze Text und darunter beliebig
+        viele Fotos, die sich mit einem Klick groß öffnen. Er wird durch den ersten
+        echten Beitrag ersetzt.</p>
+      <div class="news-gallery">
+        <button type="button" class="news-img" data-lightbox-item
+                onclick="openLightbox(this)" data-caption="Behandlungsraum in der Villa">
+          <img src="images/ordination-behandlungsraum-villa-hietzing.jpg"
+               alt="Behandlungsraum mit Kristallluster in der Villa-Ordination Wien-Hietzing" loading="lazy">
+        </button>
+        <button type="button" class="news-img" data-lightbox-item
+                onclick="openLightbox(this)" data-caption="Unser Garten in Hietzing">
+          <img src="images/pudel-garten-hietzing-wien.jpg"
+               alt="Weißer Pudel im Garten der Tierarztordination Wien-Hietzing" loading="lazy">
+        </button>
+        <button type="button" class="news-img" data-lightbox-item
+                onclick="openLightbox(this)" data-caption="Ultraschall-Diagnostik">
+          <img src="images/tierarzt-ultraschall-diagnostik-hund.jpg"
+               alt="Ultraschalluntersuchung bei einem Hund in der Ordination DDr. Antolini" loading="lazy">
+        </button>
+        <button type="button" class="news-img" data-lightbox-item
+                onclick="openLightbox(this)" data-caption="Persönliche Betreuung mit Herz">
+          <img src="images/tierarzt-antolini-patient-portrait.jpg"
+               alt="DDr. Michael Antolini mit einem Patienten in Wien-Hietzing" loading="lazy">
+        </button>
+      </div>
+    </article>
+    <!-- ↑↑↑ PLATZHALTER ENDE ↑↑↑ -->
+
+  </div>
+</section>
+
 <!-- ═══ GALLERY ═══ -->
 <section class="section gallery" id="galerie" aria-labelledby="gallery-heading">
   <div class="section-header reveal">
@@ -1118,44 +1231,44 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
     <h2 id="gallery-heading">Einblicke in unsere<br>Villa-Ordination</h2>
     <p>Erleben Sie die einzigartige Atmosphäre unserer Praxis in Wien-Hietzing.</p>
   </div>
-  <div class="gallery-grid" id="galleryGrid">
-    <div class="gallery-item wide reveal" onclick="openLightbox(0)">
+  <div class="gallery-grid" id="galleryGrid" data-lightbox>
+    <div class="gallery-item wide reveal" onclick="openLightbox(this)" data-lightbox-item>
       <img src="images/tierarzt-untersuchung-hund-stethoskop.jpg" alt="DDr. Antolini untersucht einen Hund mit dem Stethoskop in der Villa-Ordination Wien" loading="lazy">
       <div class="gallery-caption">DDr. Antolini bei der Untersuchung</div>
     </div>
-    <div class="gallery-item reveal reveal-d1" onclick="openLightbox(1)">
+    <div class="gallery-item reveal reveal-d1" onclick="openLightbox(this)" data-lightbox-item>
       <img src="images/ordination-behandlungsraum-villa-hietzing.jpg" alt="Behandlungsraum mit Kristallluster in der historischen Villa-Ordination Hietzing" loading="lazy">
       <div class="gallery-caption">Behandlungsraum in der Villa</div>
     </div>
-    <div class="gallery-item reveal reveal-d2" onclick="openLightbox(2)">
+    <div class="gallery-item reveal reveal-d2" onclick="openLightbox(this)" data-lightbox-item>
       <img src="images/ordination-operationsraum-tierarzt-wien.jpg" alt="Moderner Operationsraum mit Behandlungstisch in der Tierarztpraxis Wien-Hietzing" loading="lazy">
       <div class="gallery-caption">Operationsraum</div>
     </div>
-    <div class="gallery-item reveal" onclick="openLightbox(3)">
+    <div class="gallery-item reveal" onclick="openLightbox(this)" data-lightbox-item>
       <img src="images/pudel-garten-hietzing-wien.jpg" alt="Weißer Pudel im grünen Garten der Tierarztordination Wien-Hietzing" loading="lazy">
       <div class="gallery-caption">Unser Garten in Hietzing</div>
     </div>
-    <div class="gallery-item reveal reveal-d1" onclick="openLightbox(4)">
+    <div class="gallery-item reveal reveal-d1" onclick="openLightbox(this)" data-lightbox-item>
       <img src="images/tierarzt-ultraschall-diagnostik-hund.jpg" alt="DDr. Antolini führt eine Ultraschalluntersuchung bei einem Hund durch — moderne Diagnostik in Wien" loading="lazy">
       <div class="gallery-caption">Ultraschall-Diagnostik</div>
     </div>
-    <div class="gallery-item wide reveal reveal-d2" onclick="openLightbox(5)">
+    <div class="gallery-item wide reveal reveal-d2" onclick="openLightbox(this)" data-lightbox-item>
       <img src="images/tierarzt-antolini-patient-portrait.jpg" alt="DDr. Michael Antolini mit seinem Patienten — persönliche Tiermedizin mit Herz in Wien-Hietzing" loading="lazy">
       <div class="gallery-caption">Persönliche Betreuung mit Herz</div>
     </div>
-    <div class="gallery-item reveal" onclick="openLightbox(6)">
+    <div class="gallery-item reveal" onclick="openLightbox(this)" data-lightbox-item>
       <img src="images/tierarzt-antolini-mit-pudel-portrait.jpg" alt="DDr. Michael Antolini umarmt liebevoll einen weißen Pudel — Tierarzt mit Herz in Wien-Hietzing" loading="lazy">
       <div class="gallery-caption">Tiermedizin mit Herz</div>
     </div>
-    <div class="gallery-item reveal reveal-d1" onclick="openLightbox(7)">
+    <div class="gallery-item reveal reveal-d1" onclick="openLightbox(this)" data-lightbox-item>
       <img src="images/pudel-garten-frohlich-hietzing.jpg" alt="Fröhlicher weißer Pudel im Garten der Tierarztordination DDr. Antolini in Wien-Hietzing" loading="lazy">
       <div class="gallery-caption">Wohlfühlen im Garten</div>
     </div>
-    <div class="gallery-item reveal reveal-d2" onclick="openLightbox(8)">
+    <div class="gallery-item reveal reveal-d2" onclick="openLightbox(this)" data-lightbox-item>
       <img src="images/tierarzt-zahnuntersuchung-pudel.jpg" alt="DDr. Antolini führt eine Zahnuntersuchung bei einem weißen Pudel durch — Zahnmedizin für Tiere in Wien" loading="lazy">
       <div class="gallery-caption">Zahnuntersuchung</div>
     </div>
-    <div class="gallery-item reveal reveal-d3" onclick="openLightbox(9)">
+    <div class="gallery-item reveal reveal-d3" onclick="openLightbox(this)" data-lightbox-item>
       <img src="images/tierarzt-team-untersuchung-pudel.jpg" alt="DDr. Antolini und Assistentin untersuchen gemeinsam einen Pudel mit Ultraschall in der Villa-Ordination Wien" loading="lazy">
       <div class="gallery-caption">Teamarbeit bei der Untersuchung</div>
     </div>
@@ -1361,6 +1474,7 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
         <li><a href="#team">Unser Team</a></li>
         <li><a href="#villa">Unsere Villa</a></li>
         <li><a href="#bewertungen">Bewertungen</a></li>
+        <li><a href="#aktuelles">Aktuelles</a></li>
         <li><a href="#galerie">Galerie</a></li>
         <li><a href="#instagram">Instagram</a></li>
       </ul>
@@ -1501,37 +1615,55 @@ if (localStorage.getItem('maps_consent') === 'true') {
   window.addEventListener('DOMContentLoaded', () => loadMap());
 }
 
-// Lightbox gallery
-const galleryImages = [
-  { src: 'images/tierarzt-untersuchung-hund-stethoskop.jpg', caption: 'DDr. Antolini bei der Untersuchung' },
-  { src: 'images/ordination-behandlungsraum-villa-hietzing.jpg', caption: 'Behandlungsraum in der Villa' },
-  { src: 'images/ordination-operationsraum-tierarzt-wien.jpg', caption: 'Operationsraum' },
-  { src: 'images/pudel-garten-hietzing-wien.jpg', caption: 'Unser Garten in Hietzing' },
-  { src: 'images/tierarzt-ultraschall-diagnostik-hund.jpg', caption: 'Ultraschall-Diagnostik' },
-  { src: 'images/tierarzt-antolini-patient-portrait.jpg', caption: 'Persönliche Betreuung mit Herz' }
-];
-let currentLightbox = 0;
+// Lightbox
+// Liest Quelle und Beschriftung aus dem DOM. Vorher stand im HTML ein Zahlenindex
+// (openLightbox(7)) und im Skript ein Feld mit den Bildern -- zwei Stellen, die
+// zusammenpassen mussten. Sie taten es nicht: 10 Galeriebilder gegen 6 Eintraege,
+// Klick auf die letzten vier warf einen TypeError und die Lightbox blieb zu.
+// Eine Gruppe ist jedes Element mit data-lightbox, ein Bild jedes mit data-lightbox-item.
+let lbGruppe = [];
+let lbStelle = 0;
 
-function openLightbox(index) {
-  if (!galleryImages[index].src) return;
-  currentLightbox = index;
-  const lb = document.getElementById('lightbox');
-  document.getElementById('lightboxImg').src = galleryImages[index].src;
-  document.getElementById('lightboxCaption').textContent = galleryImages[index].caption;
-  lb.classList.add('active');
+function openLightbox(el) {
+  const gruppe = el.closest('[data-lightbox]');
+  if (!gruppe) return;
+  lbGruppe = Array.from(gruppe.querySelectorAll('[data-lightbox-item]'));
+  lbStelle = lbGruppe.indexOf(el);
+  if (lbStelle < 0) return;
+  lbZeigen();
+  document.getElementById('lightbox').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
+
+function lbZeigen() {
+  const el = lbGruppe[lbStelle];
+  const img = el.querySelector('img');
+  if (!img) return;
+  const beschriftung = el.dataset.caption
+    || (el.querySelector('.gallery-caption') || {}).textContent
+    || img.getAttribute('alt') || '';
+  const gross = document.getElementById('lightboxImg');
+  gross.src = el.dataset.full || img.getAttribute('src');
+  gross.alt = img.getAttribute('alt') || '';
+  document.getElementById('lightboxCaption').textContent = beschriftung.trim();
+  // Bei einem einzelnen Bild gibt es nichts zu blaettern
+  const nurEines = lbGruppe.length < 2;
+  document.querySelectorAll('.lightbox-nav').forEach(b => b.hidden = nurEines);
+}
+
 function closeLightbox(e) {
   if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
   document.getElementById('lightbox').classList.remove('active');
   document.body.style.overflow = '';
 }
+
 function navLightbox(dir, e) {
-  e.stopPropagation();
-  let next = currentLightbox + dir;
-  while (next >= 0 && next < galleryImages.length && !galleryImages[next].src) next += dir;
-  if (next >= 0 && next < galleryImages.length && galleryImages[next].src) openLightbox(next);
+  if (e) e.stopPropagation();
+  if (lbGruppe.length < 2) return;
+  lbStelle = (lbStelle + dir + lbGruppe.length) % lbGruppe.length;
+  lbZeigen();
 }
+
 document.addEventListener('keydown', e => {
   if (!document.getElementById('lightbox').classList.contains('active')) return;
   if (e.key === 'Escape') closeLightbox();
