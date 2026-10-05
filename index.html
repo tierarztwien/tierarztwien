@@ -836,6 +836,8 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-content { padding: 120px 40px 50px; }
   .hero-image { height: 50vh; }
+  /* Querstreifen gegen Hochformat: mittig geschnitten endet DDr. Antolini beim Kinn */
+  .hero-image img { object-position: center 25%; }
   .hero-badge { bottom: 20px; left: 20px; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .about-grid { grid-template-columns: 1fr; gap: 36px; }
@@ -863,6 +865,7 @@ h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
   }
   .hero-content { padding: 100px 20px 40px; }
   .hero-image { height: 38vh; }
+  .hero-image img { object-position: center 25%; }
   .hero-badge { display: none; }
   .section { padding: 70px 20px; }
   .trust-bar { flex-wrap: wrap; gap: 24px 44px; padding: 26px 20px; }
